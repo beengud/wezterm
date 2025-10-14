@@ -71,6 +71,14 @@ local mappings = {
   { "<leader>c", act.ActivateCopyMode, "copy mode" },
   { "<leader>s", act.Search "CurrentSelectionOrEmptyString", "search mode" },
   { "<leader>p", act.ActivateKeyTable { name = "pick_mode" }, "pick mode" },
+  {
+    "<leader>y",
+    act.SpawnCommandInNewTab {
+      label = "Yazi File Manager",
+      args = { "yazi" },
+    },
+    "yazi file manager",
+  },
 }
 
 for i = 1, 24 do
