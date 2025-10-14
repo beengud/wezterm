@@ -7,9 +7,43 @@ local G = require("wezterm").GLOBAL
 local Config = {}
 
 Config.color_schemes = color.get_schemes()
-Config.color_scheme = color.get_scheme()
+Config.color_scheme = "slime"
 
 local theme = Config.color_schemes[Config.color_scheme]
+if not theme then
+  -- Fallback to a built-in scheme if custom scheme fails to load
+  local wt = require("wezterm")
+  wt.log_error("Failed to load color scheme: " .. tostring(Config.color_scheme))
+  Config.color_scheme = "Bamboo"  -- fallback
+  theme = wt.color.get_builtin_schemes()[Config.color_scheme]
+end
+
+-- Apply colors directly from the theme
+Config.colors = {
+  foreground = theme.foreground,
+  background = theme.background,
+  cursor_bg = theme.cursor_bg,
+  cursor_fg = theme.cursor_fg,
+  cursor_border = theme.cursor_border,
+  selection_fg = theme.selection_fg,
+  selection_bg = theme.selection_bg,
+  scrollbar_thumb = theme.scrollbar_thumb,
+  split = theme.split,
+  ansi = theme.ansi,
+  brights = theme.brights,
+  indexed = theme.indexed,
+  compose_cursor = theme.compose_cursor,
+  visual_bell = theme.visual_bell,
+  copy_mode_active_highlight_bg = theme.copy_mode_active_highlight_bg,
+  copy_mode_active_highlight_fg = theme.copy_mode_active_highlight_fg,
+  copy_mode_inactive_highlight_bg = theme.copy_mode_inactive_highlight_bg,
+  copy_mode_inactive_highlight_fg = theme.copy_mode_inactive_highlight_fg,
+  quick_select_label_bg = theme.quick_select_label_bg,
+  quick_select_label_fg = theme.quick_select_label_fg,
+  quick_select_match_bg = theme.quick_select_match_bg,
+  quick_select_match_fg = theme.quick_select_match_fg,
+  tab_bar = theme.tab_bar,
+}
 
 Config.background = {
   {
