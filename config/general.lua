@@ -48,6 +48,26 @@ end
 
 Config.default_cwd = fs.home()
 
+-- Window positioning - bottom third of screen
+-- Get screen dimensions and position window at bottom third
+local wt = require("wezterm")
+wt.on("gui-startup", function(cmd)
+  local tab, pane, window = wt.mux.spawn_window(cmd or {})
+
+  -- Get screen dimensions
+  local screen = wt.gui.screens().active
+  local width = screen.width
+  local height = screen.height
+
+  -- Bottom third positioning
+  local window_height = math.floor(height / 3)
+  local window_y = height - window_height
+
+  -- Set window position and size
+  window:gui_window():set_position(0, window_y)
+  window:gui_window():set_inner_size(width, window_height)
+end)
+
 -- ref: https://wezfurlong.org/wezterm/config/lua/SshDomain.html
 Config.ssh_domains = {}
 
