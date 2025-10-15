@@ -53,9 +53,9 @@ Config.font = wt.font_with_fallback {
 }
 
 if fs.platform().is_win then
-  Config.font_size = 9.5
+  Config.font_size = 16
 else
-  Config.font_size = 10.5
+  Config.font_size = 16
 end
 
 Config.underline_position = -2.5
