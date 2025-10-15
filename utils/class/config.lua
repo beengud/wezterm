@@ -21,18 +21,19 @@ M.log = require("utils.class.logger"):new "Config"
 ---
 ---@return Utils.Class.Config self new instance of the Wezterm configuration.
 function M:new()
-  self.config = {}
+  local config = {}
 
   if wt.config_builder then ---@diagnostic disable-line: undefined-field
-    self.config = wt.config_builder() ---@diagnostic disable-line: undefined-field
-    self.config:set_strict_mode(true)
+    config = wt.config_builder() ---@diagnostic disable-line: undefined-field
+    config:set_strict_mode(true)
     M.log:debug "Wezterm's config builder is available"
   else
     M.log:warn "Wezterm's config builder is unavailable"
   end
 
-  self = setmetatable(self.config, { __index = M })
-  return self
+  -- Create proper instance with config as property, not as self
+  local instance = setmetatable({ config = config }, { __index = M })
+  return instance
 end
 
 ---Adds a module to the Wezterm configuration.
@@ -58,6 +59,14 @@ function M:add(spec)
     spec = require(spec)
   end
 
+  -- Check if module has apply_to_config method (for complex modules)
+  if type(spec.apply_to_config) == "function" then
+    M.log:debug("Calling apply_to_config() for module")
+    spec.apply_to_config(self.config)
+    return self  -- Return Config object for chaining
+  end
+
+  -- Otherwise, merge directly into config
   for key, value in pairs(spec) do
     if self.config[key] == spec[key] then
       M.log:warn("found duplicate! old: %s, new: %s", self.config[key], spec[key])
@@ -65,7 +74,7 @@ function M:add(spec)
     self.config[key] = value
   end
 
-  return self.config
+  return self  -- ✓ Return Config object, not self.config
 end
 
 return M
