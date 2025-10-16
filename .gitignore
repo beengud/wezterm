@@ -1,0 +1,18 @@
+# Claude Flow / AI coordination directories
+.claude-flow/
+.swarm/
+
+# Lua testing artifacts
+luacov.*.out
+luacov.stats.out
+
+# Editor/IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
