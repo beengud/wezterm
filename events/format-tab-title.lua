@@ -27,7 +27,7 @@ wt.on("format-tab-title", function(tab, _, _, config, hover, max_width)
 
   ---set colors based on states
   if tab.is_active then
-    fg = theme.ansi[5]
+    fg = theme.tab_bar.active_tab.bg_color  -- Use theme's active tab color instead of hardcoded magenta
     attributes = { "Bold" }
   elseif hover then
     fg = theme.tab_bar.inactive_tab_hover.bg_color

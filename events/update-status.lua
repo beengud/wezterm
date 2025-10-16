@@ -43,10 +43,10 @@ e.__get_modes = function()
   ---@field pick_mode table "PICK" mode.
   return {
     search_mode = { i = "󰍉", txt = "SEARCH", bg = e.theme.brights[4], pad = 5 },
-    window_mode = { i = "󱂬", txt = "WINDOW", bg = e.theme.ansi[6], pad = 4 },
+    window_mode = { i = "󱂬", txt = "WINDOW", bg = "#2F6260", pad = 4 },  -- Slime button background
     copy_mode = { i = "󰆏", txt = "COPY", bg = e.theme.brights[3], pad = 5 },
-    font_mode = { i = "󰛖", txt = "FONT", bg = e.theme.ansi[7], pad = 4 },
-    help_mode = { i = "󰞋", txt = "NORMAL", bg = e.theme.ansi[5], pad = 5 },
+    font_mode = { i = "󰛖", txt = "FONT", bg = "#405c50", pad = 4 },  -- Slime green-gray
+    help_mode = { i = "󰞋", txt = "NORMAL", bg = "#375d4f", pad = 5 },  -- Slime split color
     pick_mode = { i = "󰢷", txt = "PICK", bg = e.theme.ansi[2], pad = 5 },
   }
 end -- }}}
@@ -154,7 +154,7 @@ e.set_left_status = function(window)
 
   local ws = window:active_workspace()
   if ws ~= "" and not e.mode then
-    local ws_bg = e.theme.brights[6]
+    local ws_bg = "#2F6260"  -- Slime button background instead of magenta
     ws = str.pad(str.padr(icon.Workspace) .. ws)
     e.width.ws = str.width(ws) + 4
 
@@ -314,7 +314,7 @@ end -- }}}
 wt.on("update-status", function(window, pane)
   local Config, Overrides = window:effective_config(), window:get_config_overrides() or {}
   e.theme = Config.color_schemes[Overrides.color_scheme or Config.color_scheme]
-  e.bg, e.fg = e.theme.background, e.theme.ansi[5]
+  e.bg, e.fg = e.theme.background, "#405c50"  -- Slime green-gray instead of magenta
 
   e.modes = e.__get_modes()
   e.width = e.__get_width(Config, pane, window)
