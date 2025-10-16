@@ -1,0 +1,17 @@
+return {
+  _all = {
+    coverage = false,
+    lpath = "?.lua;?/init.lua;./utils/?.lua;./utils/?/init.lua",
+  },
+  default = {
+    verbose = true,
+    output = "TAP",
+    pattern = "_spec",
+    ROOT = {"spec/"}
+  },
+  ["ci"] = {
+    verbose = false,
+    output = "junit",
+    coverage = true
+  }
+}
