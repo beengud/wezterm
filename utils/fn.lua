@@ -1062,10 +1062,10 @@ end --~~}}}
 ---
 ---This function checks the current GUI appearance (e.g., light or dark mode)
 ---and returns a predefined color scheme name accordingly.  If the appearance is
----detected as "Dark," it returns `"kanagawa-wave"`.  Otherwise, it defaults to
+---detected as "Dark," it returns `"slime"`.  Otherwise, it defaults to
 ---`"kanagawa-lotus"`.
 ---
----@return "kanagawa-wave"|"kanagawa-lotus" colorscheme
+---@return "slime"|"kanagawa-lotus" colorscheme
 ---
 ---@usage
 ---~~~lua
@@ -1076,7 +1076,7 @@ end --~~}}}
 ---~~~
 M.color.get_scheme = function()
   if sfind((wt_gui and wt_gui.get_appearance() or ""), "Dark") then
-    return "kanagawa-wave"
+    return "slime"
   end
   return "kanagawa-lotus"
 end --~~}}}
