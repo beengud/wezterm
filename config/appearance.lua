@@ -22,13 +22,13 @@ Config.background = {
 
 Config.bold_brightens_ansi_colors = "BrightAndBold"
 
----char select and command palette
-Config.char_select_bg_color = theme.brights[6]
-Config.char_select_fg_color = theme.background
+---char select and command palette (using Slime theme colors)
+Config.char_select_bg_color = "#405c50"  -- Slime green-gray
+Config.char_select_fg_color = "#e0e0e0"  -- Slime foreground
 Config.char_select_font_size = 12
 
-Config.command_palette_bg_color = theme.brights[6]
-Config.command_palette_fg_color = theme.background
+Config.command_palette_bg_color = "#2F6260"  -- Slime button background
+Config.command_palette_fg_color = "#e0e0e0"  -- Slime foreground
 Config.command_palette_font_size = 14
 Config.command_palette_rows = 20
 
@@ -61,11 +61,39 @@ Config.visual_bell = {
   fade_out_duration_ms = 200,
 }
 
----window appearance
+---window appearance (Slime theme colors)
 Config.window_padding = { left = 2, right = 2, top = 2, bottom = 1 }
 Config.integrated_title_button_alignment = "Right"
 Config.integrated_title_button_style = "Windows"
 Config.integrated_title_buttons = { "Hide", "Maximize", "Close" }
+
+-- Window frame colors for Slime theme
+Config.window_frame = {
+  active_titlebar_bg = "#282e2f",  -- Slime tab bar background
+  inactive_titlebar_bg = "#1e2324",  -- Slime background
+  active_titlebar_fg = "#e0e0e0",  -- Slime foreground
+  inactive_titlebar_fg = "#878f8c",  -- Slime inactive tab foreground
+  button_bg = "#2F6260",  -- Slime button background
+  button_fg = "#e0e0e0",  -- Slime foreground
+  button_hover_bg = "#405c50",  -- Slime hover background
+  button_hover_fg = "#e0e0e0",  -- Slime foreground
+}
+
+-- Pane selection colors for Slime theme
+Config.pane_select_bg_color = "#2F6260"  -- Slime button background
+Config.pane_select_fg_color = "#a8df5a"  -- Slime cursor (bright green)
+
+-- Split/pane border colors
+Config.inactive_pane_hsb = {
+  saturation = 0.8,
+  brightness = 0.7,
+}
+
+-- Color for split borders
+Config.colors = {
+  split = "#375d4f",  -- Slime split color
+  scrollbar_thumb = "#405c50",  -- Slime scrollbar
+}
 
 ---exit behavior
 Config.clean_exit_codes = { 130 }
