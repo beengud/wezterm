@@ -44,6 +44,9 @@ if fs.platform().is_win then
       default_cwd = "/home/sravioli",
     },
   }
+else
+  -- macOS/Linux: Use nushell as default shell with login flag
+  Config.default_prog = { "/opt/homebrew/bin/nu", "--login" }
 end
 
 Config.default_cwd = fs.home()

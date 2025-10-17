@@ -16,9 +16,11 @@ Config.background = {
     source = { Color = theme.background },
     width = "100%",
     height = "100%",
-    opacity = G.opacity or 1,
+    opacity = 0.75,
   },
 }
+
+Config.window_background_opacity = 0.75
 
 Config.bold_brightens_ansi_colors = "BrightAndBold"
 
