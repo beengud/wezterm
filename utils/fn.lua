@@ -960,6 +960,20 @@ M.str.format_tab_title = function(pane, title, config, max_width)
     title = ("%s (%s %s)"):format(Icon.Progs[proc], Icon.Folder, cwd)
   end
 
+  ---Check if current directory is in a git repository and show repo name
+  local full_cwd = pane.current_working_dir and pane.current_working_dir.file_path
+    or (pane:get_current_working_dir() and pane:get_current_working_dir().file_path)
+
+  if full_cwd then
+    local git_root = M.fs.find_git_dir(full_cwd)
+    if git_root then
+      local repo_name = M.fs.basename(git_root)
+      -- Add git icon and repo name as prefix to the title
+      local git_icon = Icon.Progs["git"] or wt.nerdfonts.dev_git
+      title = git_icon .. " " .. repo_name .. " " .. wt.nerdfonts.pl_right_hard_divider .. " " .. title
+    end
+  end
+
   title = sgsub(title, M.fs.basename(M.fs.home()), "󰋜 ")
 
   ---truncate the tab title when it overflows the maximum available space, then concatenate
